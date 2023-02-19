@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 class Project(models.Model):
-
+    """ Проект - набор проектов. """
     projectName = models.CharField(max_length=100)
     projectKey = models.CharField(max_length=100, unique=True, null=True)
     dateCreateProject = models.DateTimeField(auto_now_add=True)
@@ -13,6 +13,8 @@ class Project(models.Model):
         return self.projectName
 
 class Task(models.Model):
+
+    """ Задача - набор задач для конкретного проекта. """
 
     task_title = models.CharField(verbose_name='Название задачи', db_index=True,
                                   unique=True, max_length=100, blank=True)
@@ -37,6 +39,9 @@ class Task(models.Model):
     def __str__(self):
         return self.task_title
 class Dashboard(models.Model):
+
+    """ Доска - конкретного проекта с набором задач """
+
     dashboard_title = models.CharField(verbose_name='Название Доски', max_length=150)
     # dashBoardStatus
     dashboard_task_name = models.ForeignKey(Task, on_delete=models.CASCADE)
