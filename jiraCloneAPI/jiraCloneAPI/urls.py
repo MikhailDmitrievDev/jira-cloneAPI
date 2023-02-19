@@ -1,13 +1,8 @@
-
 from django.contrib import admin
 from django.urls import path, include
-from django.contrib.auth.models import User
-from rest_framework import routers, serializers, viewsets
 
-from jiraAPI.views import JiraCloneAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/projects', JiraCloneAPI.as_view())
-
+    path('api/v1/', include('jiraAPI.urls'))
 ]

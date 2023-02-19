@@ -1,13 +1,8 @@
-from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
-from .models import Project
-from .serializers import ProjectSerializer
+from .serializers import *
 
 
-class JiraCloneAPI(generics.ListAPIView):
-
-    queryset = Project.objects.all()
-
-    serializer_class = ProjectSerializer
-
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskDetailSerializer
